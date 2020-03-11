@@ -2,13 +2,17 @@ namespace Version_2_C
 {
     public sealed partial class frmPainting : frmWork
     {
-
         private frmPainting()
         {
             InitializeComponent();
         }
 
         public static readonly frmPainting Instance = new frmPainting();
+
+        public static void Run(clsPainting prPainting)
+        {
+            Instance.SetDetails(prPainting);
+        }
 
         protected override void updateForm()
         {

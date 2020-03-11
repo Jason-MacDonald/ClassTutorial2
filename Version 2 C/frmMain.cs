@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Version_2_C
 {
-    public partial class frmMain : Form
+    public sealed partial class frmMain : Form
     {
         private frmMain()
         {
