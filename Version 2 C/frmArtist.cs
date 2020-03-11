@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Version_2_C
 {
     public sealed partial class frmArtist : Form
     {
+        private static Dictionary<clsArtist, frmArtist> _ArtistFormList = new Dictionary<clsArtist, frmArtist>();
+
         public frmArtist()
         {
             InitializeComponent();
@@ -23,6 +26,22 @@ namespace Version_2_C
 
         private clsArtist _Artist;
         private clsWorksList _WorksList;
+
+        public static void Run(clsArtist prArtist)
+        {
+            frmArtist lcArtistForm;
+            if(!_ArtistFormList.TryGetValue(prArtist, out lcArtistForm))
+            {
+                lcArtistForm = new frmArtist();
+                _ArtistFormList.Add(prArtist, lcArtistForm);
+                lcArtistForm.SetDetails(prArtist);
+            }
+            else
+            {
+                lcArtistForm.Show();
+                lcArtistForm.Activate();
+            }
+        }
 
         private void updateDisplay()
         {
@@ -48,7 +67,7 @@ namespace Version_2_C
             _Artist = prArtist;
             updateForm();
             updateDisplay();
-            ShowDialog();
+            Show();
         }
 
         private void updateForm()
@@ -92,7 +111,7 @@ namespace Version_2_C
             if (isValid() == true)
             {
                 pushData();
-                Close();
+                Hide();
             }
         }
 

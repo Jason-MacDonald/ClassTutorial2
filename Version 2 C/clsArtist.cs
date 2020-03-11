@@ -15,22 +15,12 @@ namespace Version_2_C
         private clsWorksList _WorksList;
         private clsArtistList _ArtistList;
 
-        //private static frmArtist _ArtistDialog = new frmArtist();
-        private static frmArtist _ArtistDialog = new frmArtist();
-
         public clsArtist() { }
 
         public clsArtist(clsArtistList prArtistList)
         {
             _WorksList = new clsWorksList();
             _ArtistList = prArtistList;
-            EditDetails();
-        }
-
-        public void EditDetails()
-        {
-            _ArtistDialog.SetDetails(this);
-            _TotalValue = _WorksList.GetTotalValue();
         }
 
         public bool IsDuplicate(string prArtistName)
