@@ -3,16 +3,26 @@ using System.Windows.Forms;
 
 namespace Version_2_C
 {
-    public partial class frmArtist : Form
+    public sealed partial class frmArtist : Form
     {
         public frmArtist()
         {
             InitializeComponent();
         }
 
+        // SINGLETON
+        // Constructor needs to be private. If no constructor exists, create one and make it private.
+        // Calls to this singleton can now call frmArtist.Instance
+        // Seal the class as shown above with sealed key word. Sealed means their can be no subclasses for this.
+        //private frmArtist()
+        //{           
+        //    InitializeComponent();
+        //}
+
+        //public static readonly frmArtist Instance = new frmArtist();
+
         private clsArtist _Artist;
         private clsWorksList _WorksList;
-
 
         private void updateDisplay()
         {

@@ -15,6 +15,7 @@ namespace Version_2_C
         private clsWorksList _WorksList;
         private clsArtistList _ArtistList;
 
+        //private static frmArtist _ArtistDialog = new frmArtist();
         private static frmArtist _ArtistDialog = new frmArtist();
 
         public clsArtist() { }

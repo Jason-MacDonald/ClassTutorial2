@@ -5,12 +5,18 @@ namespace Version_2_C
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        private frmMain()
         {
             InitializeComponent();
         }
 
+        private static frmMain _Instance = new frmMain();
+
+        // Need this extra step to the singleton pattern due to instantiation order of form which is called from program.
+        public static frmMain Instance => _Instance;
+
         private clsArtistList _ArtistList = new clsArtistList();
+ 
 
         private void updateDisplay()
         {
