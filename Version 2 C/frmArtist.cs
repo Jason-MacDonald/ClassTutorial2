@@ -13,17 +13,6 @@ namespace Version_2_C
             InitializeComponent();
         }
 
-        // SINGLETON
-        // Constructor needs to be private. If no constructor exists, create one and make it private.
-        // Calls to this singleton can now call frmArtist.Instance
-        // Seal the class as shown above with sealed key word. Sealed means their can be no subclasses for this.
-        //private frmArtist()
-        //{           
-        //    InitializeComponent();
-        //}
-
-        //public static readonly frmArtist Instance = new frmArtist();
-
         private clsArtist _Artist;
         private clsWorksList _WorksList;
 
@@ -45,7 +34,6 @@ namespace Version_2_C
 
         private void updateDisplay()
         {
-            txtName.Enabled = txtName.Text == "";
             if (_WorksList.SortOrder == 0)
             {
                 _WorksList.SortByName();
@@ -60,11 +48,13 @@ namespace Version_2_C
             lstWorks.DataSource = null;
             lstWorks.DataSource = _WorksList;
             lblTotal.Text = Convert.ToString(_WorksList.GetTotalValue());
+            frmMain.Instance.updateDisplay();
         }
 
         public void SetDetails(clsArtist prArtist)
         {
             _Artist = prArtist;
+            txtName.Enabled = string.IsNullOrEmpty(_Artist.Name);
             updateForm();
             updateDisplay();
             Show();
@@ -110,7 +100,23 @@ namespace Version_2_C
         {
             if (isValid() == true)
             {
-                pushData();
+                try
+                {
+                    pushData();
+                    if (txtName.Enabled)
+                    {
+                        _Artist.NewArtist();
+                        MessageBox.Show("Artist added", "Success");
+                        frmMain.Instance.updateDisplay();
+                        txtName.Enabled = false;
+                    }
+                    Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
                 Hide();
             }
         }

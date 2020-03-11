@@ -17,7 +17,7 @@ namespace Version_2_C
 
         private clsArtistList _ArtistList = new clsArtistList();
 
-        private void updateDisplay()
+        public void updateDisplay()
         {
             lstArtists.DataSource = null;
             string[] lcDisplayList = new string[_ArtistList.Count];

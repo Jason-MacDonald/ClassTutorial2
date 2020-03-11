@@ -9,13 +9,6 @@ namespace Version_2_C
     {
         private const string _FileName = "gallery.dat";
 
-        public void NewArtist()
-        {
-            clsArtist lcArtist = new clsArtist(this);
-            if (lcArtist.Name != "")
-                Add(lcArtist.Name, lcArtist);
-        }
-
         public decimal GetTotalValue()
         {
             decimal lcTotal = 0;
