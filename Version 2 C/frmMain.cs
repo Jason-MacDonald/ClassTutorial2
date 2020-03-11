@@ -10,13 +10,12 @@ namespace Version_2_C
             InitializeComponent();
         }
 
-        private static frmMain _Instance = new frmMain();
+        private static readonly frmMain _Instance = new frmMain();
 
         // Need this extra step to the singleton pattern due to instantiation order of form which is called from program.
-        public static frmMain Instance => _Instance;
+        public static frmMain Instance { get => _Instance; }
 
         private clsArtistList _ArtistList = new clsArtistList();
- 
 
         private void updateDisplay()
         {
